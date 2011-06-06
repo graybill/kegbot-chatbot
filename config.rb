@@ -1,0 +1,2 @@
+AIM_USERNAME = 'retardomontlbn'
+AIM_PASSWORD = '291649'
