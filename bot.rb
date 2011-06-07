@@ -1,18 +1,59 @@
 require 'rubygems'
 require 'net/toc'
+require 'config'
 
-Net::TOC.new("retardomontlbn", "291649") do |msg, buddy|
-  msg = msg.chomp.gsub(/<[^>]+>/,"")
-  p "message #{msg} received from #{buddy}"
+# require 'data' # some data file that's created from a form? or...
+# Model beer hash
+# beers = {
+#   beer: {
+#       name: 'awesome name',
+#       type: 'ipa',
+#       description: 'a little blurb from some beer site',
+#       volume: 'what\'s left' #from the microcontroller
+#   }
+# }
+
+buddies = Hash.new
+beers = ['Angry Eel Porter', 'Sweaty Betty Wheat', 'Fancy Pants IPA']
+
+Net::TOC.new(AIM_USERNAME, AIM_PASSWORD) do |msg, buddy|
   
-  if !msg.index(/[hey|hello|hi]/).nil?
-    buddy.send_im "yo, sup?"
-  elsif msg.include? 'beer'
-    buddy.send_im("ah you'd like some beer.")
-    if msg.index.(/[kind|tap]/)
-      buddy.send_im("there's an angry eel porter, slutty sweatty betty, an ipa")
-    end
-  elsif
-    buddy.send_im("I'm not very smart, I don't understand")
+  # Clean up the incoming message
+  msg = msg.chomp.gsub(/<[^>]+>/,"")
+  
+  # Log the buddy name, message, and time
+  p "#{buddy}: #{msg} at #{Time.now}"
+  
+  # Save buddy and last timestamp message
+  # Intro message, only show if it's a newish IM  
+  unless buddies.has_key?(buddy) #&& buddies[buddy] < Time.now - 60*20 #twenty minues ago
+    buddy.send_im "Hi, I'm the RTP Kegerator, I can tell you about the beers I have on tap."
+    buddy.send_im "On three taps we've got #{beers.map{|b| b + ", " }}."
+    buddy.send_im "Type the <b>name of a beer</b> and I'll tell you more about it."
+    buddy.send_im "Type the <b>help</b> and I'll tell you more about what I can do."
   end
+  
+  if msg.include? 'help'
+    buddy.send_im "<b>You stupid wanker. I can't do shit yet.</b>"
+    buddy.send_im "Get more beer info: "
+    beers.each do |b|
+      buddy.send_im b
+    end
+  end
+
+  # turn the beer name into an array and test the msg for each word
+  if msg.include? 'ipa'
+    buddy.send_im "Good choice. This IPA is made from awesome hops and has a 6% ABV."
+  end
+  if msg.include? 'porter'
+    buddy.send_im "A porter. It's 8% ABV, I like the way you think."
+  end
+  if msg.include? 'bored'
+    buddy.send_im "Yeah, me too. Is this interesting? some cool link from some API"
+  end
+  
+  # Refactor to use buddy.send_im chatbot_response
+  buddies[buddy] = Time.now
+  p buddies[buddy]
+  
 end
