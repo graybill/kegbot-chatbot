@@ -7,11 +7,11 @@ buddies = Hash.new
 
 def translate_message(msg)
   case msg
-  when /help/ then "You asked for help. Type 'beer' to see what's on tap."
+  when /help/ then "I can't do much right now, but type <b>beer</b> or <b>taps</b> to see what's on tap."
   when /hey|hello|hi|yo/ then "Howdy partner"
   when /tap|beer/ then taps
   else
-    return "no comprende"  
+    return "I can't do much right now. No comprende."  
   end
 end
 
@@ -38,8 +38,7 @@ Net::TOC.new(AIM_USERNAME, AIM_PASSWORD) do |msg, buddy|
   # Intro message, only show if it's a newish IM  
   if !buddies.has_key?(buddy) #&& buddies[buddy] < Time.now - 60*20 #twenty minues ago
     buddy.send_im "Hi, I'm the #{COMPANY_NAME} #{KEGERATOR_NAME}, I can tell you about the beers I have on tap."
-    # buddy.send_im "Type the <b>name of a beer</b> and I'll tell you more about it."
-    buddy.send_im "Type <b>help</b> and I'll tell you more about what I can do."
+    buddy.send_im translate_message('help')
   else
     buddy.send_im translate_message(msg)
   end 
