@@ -1,6 +1,3 @@
-source :rubyforge
-gem 'sinatra'
-gem 'thin'
+source 'http://rubygems.org'
 gem 'net-toc'
-gem 'heroku'
-gem 'foreman'
+gem 'httparty'
