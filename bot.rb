@@ -36,10 +36,10 @@ Net::TOC.new(AIM_USERNAME, AIM_PASSWORD) do |msg, buddy|
   keg_message = String.new  
   resp = Kegbot.new.kegs({:status => 'online'})
   resp['result']['kegs'].each do |keg|
-    keg_message +=  "A #{keg['size_name']} of #{keg['description']}"
+    if keg['status'] == 'online'
+      buddy.send_im "A #{keg['size_name']} of #{keg['description']}"
+    end
   end  
-  buddy.send_im "We've got #{resp['result']['kegs']} kegs right now."
-  buddy.send_im keg_message
 
   # Save last message time for buddy
   buddies[buddy] = Time.now
