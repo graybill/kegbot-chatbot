@@ -13,6 +13,8 @@ require 'config'
 #   }
 # }
 
+# Get this to read off the kegbot
+
 buddies = Hash.new
 beers = ['Angry Eel Porter', 'Sweaty Betty Wheat', 'Fancy Pants IPA']
 
