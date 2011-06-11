@@ -7,9 +7,9 @@ buddies = Hash.new
 
 def translate_message(msg)
   case msg
-  when 'help'
+  when /help/
     return "You asked for help. Too bad I can't help you"
-  when ['hey', 'hello', 'hi', 'yo']
+  when /hey|hello|hi/
     return "Howdy partner"
   else
     return "no comprende"  
