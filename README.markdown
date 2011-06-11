@@ -8,4 +8,4 @@ Setup
 
 Run Server
 
-$ ruby bot.rb
+$ ruby chatbot.rb
