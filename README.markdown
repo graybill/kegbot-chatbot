@@ -1,11 +1,14 @@
-An AIM chatbot that talks to your kegbot (http://kegbot.org)
+An AIM chatbot that talks to a kegbot (http://kegbot.org)
 
-Setup
+By default this connects to the publicly available SFO Kegbot, so anyone can connect to the SFO Kegbot for experimentation. You will need to register an AIM screename for your bot at http://aim.com
 
-1. Install net-toc with 'gem install -r net-toc'
-	* Any trouble, this project is based on this simple tutorial: http://scie.nti.st/2007/11/20/aim-bot-in-ruby
-2. Copy config.example.rb to config.rb and edit the settings
+Requirements:
+1. Ruby 1.8.7
+2. Ruby Bundler:  'gem install bundler'
+3. net-toc: 'gem install -r net-toc'
 
-Run Server
+Configuration 
+Copy config.example.rb to config.rb and edit the settings
 
-$ ruby chatbot.rb
+Run the Chatbot
+$ruby chatbot.rb
