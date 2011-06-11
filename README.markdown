@@ -1,9 +1,11 @@
 About
 ----------------------------
-An AIM chatbot that talks to a kegbot (http://kegbot.org). A user must send a message to the chatbot to engage.
+An AIM chatbot that talks to a kegbot [http://kegbot.org](http://kegbot.org). A user must message the chatbot to engage the bot.
 
-By default this connects to the publicly available SFO Kegbot so anyone can connect to the SFO Kegbot for experimentation. You will need to register an AIM screename for your bot at http://aim.com
+By default this connects to the publicly available SFO Kegbot so anyone can connect to the SFO Kegbot for experimentation. You will need to register an AIM screename for your bot at [http://aim.com](http://aim.com)
 
+Get the code
+----------------------------
 	git clone git@github.com:graybill/kegbot-chatbot.git
 
 Requirements
@@ -22,7 +24,7 @@ Install net-toc:
 
 Configuration
 ----------------------------
-Copy config.example.rb to config.rb and edit the file as necessary.
+**Important:** Copy config.example.rb to config.rb and edit the file as necessary.
 
 Run the Chatbot
 ----------------------------
