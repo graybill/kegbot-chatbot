@@ -1,3 +1,5 @@
+An AIM chatbot that talks to your kegbot (http://kegbot.org)
+
 Setup
 
 1. Install net-toc with 'gem install -r net-toc'
