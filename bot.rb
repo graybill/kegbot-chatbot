@@ -7,13 +7,25 @@ buddies = Hash.new
 
 def translate_message(msg)
   case msg
-  when /help/
-    return "You asked for help. Too bad I can't help you"
-  when /hey|hello|hi/
-    return "Howdy partner"
+  when /help/ then "You asked for help. Type 'beer' to see what's on tap."
+  when /hey|hello|hi|yo/ then "Howdy partner"
+  when /tap|beer/ then taps
   else
     return "no comprende"  
   end
+end
+
+def taps
+  # Query kegbot API for list of all kegs
+  # Just data dumping right now
+  keg_message = String.new  
+  resp = Kegbot.new.kegs({:status => 'online'})
+  resp['result']['kegs'].each do |keg|
+    if keg['status'] == 'online'
+      keg_message = "A #{keg['size_name']} of #{keg['description']}"
+    end
+  end
+  return keg_message
 end
 
 Net::TOC.new(AIM_USERNAME, AIM_PASSWORD) do |msg, buddy|
@@ -24,22 +36,13 @@ Net::TOC.new(AIM_USERNAME, AIM_PASSWORD) do |msg, buddy|
   p "#{buddy}: #{msg} at #{Time.now}"
 
   # Intro message, only show if it's a newish IM  
-  unless buddies.has_key?(buddy) #&& buddies[buddy] < Time.now - 60*20 #twenty minues ago
+  if !buddies.has_key?(buddy) #&& buddies[buddy] < Time.now - 60*20 #twenty minues ago
     buddy.send_im "Hi, I'm the #{COMPANY_NAME} #{KEGERATOR_NAME}, I can tell you about the beers I have on tap."
     # buddy.send_im "Type the <b>name of a beer</b> and I'll tell you more about it."
     buddy.send_im "Type <b>help</b> and I'll tell you more about what I can do."
+  else
+    buddy.send_im translate_message(msg)
   end 
-  
-  buddy.send_im translate_message(msg)
-  
-  # Query kegbot API for list of all kegs
-  keg_message = String.new  
-  resp = Kegbot.new.kegs({:status => 'online'})
-  resp['result']['kegs'].each do |keg|
-    if keg['status'] == 'online'
-      buddy.send_im "A #{keg['size_name']} of #{keg['description']}"
-    end
-  end  
 
   # Save last message time for buddy
   buddies[buddy] = Time.now
