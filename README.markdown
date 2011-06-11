@@ -1,3 +1,6 @@
+Kegbot Chatbot
+============================
+
 About
 ----------------------------
 An AIM chatbot that talks to a [kegbot](http://kegbot.org). A user must message the chatbot to engage the bot.
