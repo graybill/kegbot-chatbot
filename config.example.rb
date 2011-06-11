@@ -6,5 +6,5 @@ KEGERATOR_NAME = 'Kegerator'
 AIM_USERNAME = 'awesomehandle'
 AIM_PASSWORD = 'mypassword'
 
-# Replace with your kegbot URL
+# Replace with your kegbot API URL
 KEGBOT_API_URL = 'http://kegbot.net/sfo/api'
