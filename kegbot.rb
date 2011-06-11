@@ -7,8 +7,7 @@ class Kegbot
   format :json
   base_uri KEGBOT_API_URL
   
-  def kegs(attrs)
+  def kegs(attrs={})
     self.class.get('/kegs')
   end
-  
 end
