@@ -6,29 +6,35 @@ By default this connects to the publicly available SFO Kegbot so anyone can conn
 
 Example
 ----------------------------
-An chatbot running the latest code may occasionally be online as **rtpkegerator**
+A chatbot running the latest code may occasionally be online as **rtpkegerator**
 
 Get the code
 ----------------------------
 	git clone git@github.com:graybill/kegbot-chatbot.git
+	
+	cd kegbot-chatbot.git
 
 Requirements
 ----------------------------
-Make sure you have Ruby 1.8.7
+Make sure you have Ruby 1.8.7 (default for OSX)
 
 	ruby -v
 
-Install Ruby Bundler:
-
-	gem install bundler
-
-Install net-toc: 
+Install net-toc (may need sudo): 
 
 	gem install -r net-toc
 
+Install Ruby Bundler (may need sudo):
+
+	gem install bundler
+	
+Then get the required gems:
+
+	bundle install
+
 Configuration
 ----------------------------
-**Important:** Copy config.example.rb to config.rb and edit the file as necessary.
+**Important:** Copy config.example.rb to config.rb and edit the file with your AIM name and kegbot info (defaults to publicly available kegbot).
 
 Run the Chatbot
 ----------------------------
