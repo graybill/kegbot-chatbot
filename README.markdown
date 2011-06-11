@@ -3,7 +3,7 @@ Kegbot Chatbot
 
 About
 ----------------------------
-An AIM chatbot that talks to a [kegbot](http://kegbot.org). A user must message the chatbot to engage the bot.
+An AIM chatbot written in Ruby that talks to a [kegbot](http://kegbot.org). A user must message the chatbot to engage the bot.
 
 By default this connects to the publicly available SFO Kegbot so anyone can connect to the SFO Kegbot for experimentation. You will need to register an AIM screen name for your chatbot at [http://aim.com](http://aim.com)
 
