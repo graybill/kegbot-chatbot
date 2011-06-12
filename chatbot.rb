@@ -7,7 +7,7 @@ buddies = Hash.new
 
 def translate_message(msg)
   case msg
-  when /help/ then "I can't do much right now, but type <b>beer</b> or <b>taps</b> to see what's on tap."
+  when /help|what|who/ then "I can't do much right now, but type <b>beer</b> or <b>taps</b> to see what's on tap on the #{COMPANY_NAME} #{KEGERATOR_NAME}."
   when /hey|hello|hi|yo/ then "Howdy partner"
   when /tap|beer/ then taps
   else
@@ -16,8 +16,8 @@ def translate_message(msg)
 end
 
 def taps
-  # Query kegbot API for list of all kegs
-  # Just data dumping right now
+  # Query kegbot API for list of all kegs, just data dumping right now
+  # TODO run this as a cron task, save to db every 30 minutes
   keg_message = String.new  
   resp = Kegbot.new.kegs
   resp['result']['kegs'].each do |keg|
@@ -29,11 +29,8 @@ def taps
 end
 
 Net::TOC.new(AIM_USERNAME, AIM_PASSWORD) do |msg, buddy|
-  # Clean up the incoming message
-  msg = msg.chomp.gsub(/<[^>]+>/,"")
-
-  # Log the buddy name, message, and time
-  p "#{buddy}: #{msg} at #{Time.now}"
+  msg = msg.chomp.gsub(/<[^>]+>/,"") # Clean up the incoming message
+  p "#{buddy}: #{msg} at #{Time.now}" # Log the buddy name, message, and time
 
   # Intro message, only show if it's a newish IM  
   if !buddies.has_key?(buddy) #&& buddies[buddy] < Time.now - 60*20 #twenty minues ago
@@ -42,7 +39,5 @@ Net::TOC.new(AIM_USERNAME, AIM_PASSWORD) do |msg, buddy|
   else
     buddy.send_im translate_message(msg)
   end 
-
-  # Save last message time for buddy
-  buddies[buddy] = Time.now
+  buddies[buddy] = Time.now # Save last message time for buddy
 end
