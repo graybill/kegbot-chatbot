@@ -19,7 +19,7 @@ def taps
   # Query kegbot API for list of all kegs
   # Just data dumping right now
   keg_message = String.new  
-  resp = Kegbot.new.kegs({:status => 'online'})
+  resp = Kegbot.new.kegs
   resp['result']['kegs'].each do |keg|
     if keg['status'] == 'online'
       keg_message = "A #{keg['size_name']} of #{keg['description']}"
