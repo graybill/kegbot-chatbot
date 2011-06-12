@@ -3,7 +3,7 @@ Kegbot Chatbot
 
 About
 ----------------------------
-An AIM chatbot written in Ruby that talks to a [kegbot](http://kegbot.org). A user must message the chatbot to engage the bot.
+An AIM chatbot written in Ruby that talks to a [kegbot](http://kegbot.org). A user must message the chatbot first to engage in conversation.
 
 By default this connects to the publicly available SFO Kegbot so anyone can connect to the SFO Kegbot for experimentation. You will need to register an AIM screen name for your chatbot at [http://aim.com](http://aim.com)
 
@@ -17,12 +17,12 @@ Check out the code:
 
 	git clone git@github.com:graybill/kegbot-chatbot.git
 
+Requirements
+----------------------------
 Move into the code directory:
 
 	cd kegbot-chatbot.git
 
-Requirements
-----------------------------
 Make sure you have Ruby 1.8.7 (default for OSX)
 
 	ruby -v
@@ -42,6 +42,12 @@ Then get the required gems:
 Configuration
 ----------------------------
 **Important:** Copy config.example.rb to config.rb and edit the file with your AIM name (required) and kegbot info (optional, defaults to publicly available kegbot).
+
+	cp config.example.rb config.rb
+
+	# AIM account info
+	AIM_USERNAME = 'yourawesomehandle'
+	AIM_PASSWORD = 'n1ftyp@ssw0rd'
 
 Run the Chatbot
 ----------------------------
