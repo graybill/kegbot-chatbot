@@ -21,7 +21,7 @@ Requirements
 ----------------------------
 Move into the code directory:
 
-	cd kegbot-chatbot.git
+	cd kegbot-chatbot
 
 Make sure you have Ruby 1.8.7 (default for OSX)
 
