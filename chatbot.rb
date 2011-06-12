@@ -28,7 +28,7 @@ def taps
   return keg_message
 end
 
-# Connect to AIM as AIM_USERNAME
+# Connect chatbot to AIM as AIM_USERNAME
 Net::TOC.new(AIM_USERNAME, AIM_PASSWORD) do |msg, buddy|
   msg = msg.chomp.gsub(/<[^>]+>/,"") # Clean up the incoming message
   p "#{buddy}: #{msg} at #{Time.now}" # Log the buddy name, message, and time
